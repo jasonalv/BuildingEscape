@@ -29,6 +29,7 @@ void UOpenDoor::BeginPlay()
 
 	//Set the door rotation
 	Owner->SetActorRotation(NewRotation);
+
 	
 	
 }
