@@ -20,7 +20,10 @@ UOpenDoor::UOpenDoor()
 void UOpenDoor::BeginPlay()
 {
 	Super::BeginPlay();
+}
 
+void UOpenDoor::OpenDoor()
+{
 	// Find the owning object
 	AActor* Owner = GetOwner();
 
@@ -29,9 +32,6 @@ void UOpenDoor::BeginPlay()
 
 	//Set the door rotation
 	Owner->SetActorRotation(NewRotation);
-
-	
-	
 }
 
 
@@ -40,6 +40,11 @@ void UOpenDoor::TickComponent( float DeltaTime, ELevelTick TickType, FActorCompo
 {
 	Super::TickComponent( DeltaTime, TickType, ThisTickFunction );
 
-	// ...
+	// Poll the trigger volumer every frame
+	//If the actor that opens is in the volume then
+	if (PressurePlate->IsOverlappingActor(ActorThatOpens))
+	{
+		OpenDoor();
+	}
 }
 
